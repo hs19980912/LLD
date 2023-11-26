@@ -1,0 +1,45 @@
+    // analyze it from the prespective of that single player who is going to play his turn.
+    // Now, the player who is going to play his turn will always be the first player in the deque.
+    // NOTE 1:Just write the code for the play of that one player. 
+    // NOTE 2:How does the inner loop stops??
+    //        Possibility 1: All the positions in the board are filled, it means there is no winner. break;
+    //        Possibility 2: once a player has successfully inserted his PlayingPiece at his desired position,
+    //                       check if he is the winner?? is yes break, else continue as it is.
+    bool startGame(){
+		isWinner = true;
+		while(isWinner){
+			if(board.isFull() == true){
+				isWinner = false;	// The game is tie
+				break;
+			}
+
+			// print the board
+			board.printBoard();
+
+			Player curPlayer = players.front();
+			players.pop_front();
+			// Take coordinates from curPlayer
+			int x, y;
+			cout << "Enter the coordinates player:" << curPlayer.getName() << endl;
+			cin >> x >> y;
+
+			if(board.isPossibleXY(x, y) == false){
+				cout << "Select correct coordinates"<<endl;
+				players.push_front(curPlayer);
+				continue;
+			}else{	// Possible to add the coordinates
+				board.insertXY(x, y, curPlayer.getPiece());
+				players.push_back(curPlayer);
+
+				bool isCurPlayerWinner = isPlayerWinner(curPlayer.getPiece());
+				if(isCurPlayerWinner == true){
+					winnerName = curPlayer.getName();
+					break;
+				}else{
+					continue;
+				}
+			}
+		}
+
+		return isWinner;
+	}
