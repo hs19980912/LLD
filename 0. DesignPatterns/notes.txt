@@ -1,0 +1,20 @@
+Strategy Pattern
+  -  Constructor Injection.
+  -  Basically Vehicle contructor will have the Interface DriveStrategy as an argument.
+  -  And all the Car classes will extend this Vehicle Class.
+  -  All these car classes in there constructor will call super(new TheirStrategy())
+  -  All the car have to make their owen theirStrategy which implements the Interface.
+
+  -  eg: Differnt Vehicle can have different DriveStrategy,
+         DriveStrategy.java    // Interface, will have drive()
+         RaceCarStrategy.java  // implements interface
+         OffRoafStrategy.java  // implements interface
+         Vehicle.java          // Vehicle class
+            DriveStrategy strategy
+            Vehicle(DriveStrategy strategy){
+               this.strategy = strategy;    // Constructor injection.
+            }
+            void drive(){
+               strategy.drive();
+            }
+         
