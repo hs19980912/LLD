@@ -7,7 +7,7 @@ Strategy Pattern
 
   -  eg: Differnt Vehicle can have different DriveStrategy,
          DriveStrategy.java    // Interface, will have drive()
-         RaceCarStrategy.java  // implements interface
+         RaceCarStrategy.java  // implements interface, implements its own drive().
          OffRoafStrategy.java  // implements interface
          Vehicle.java          // Vehicle class
             DriveStrategy strategy
