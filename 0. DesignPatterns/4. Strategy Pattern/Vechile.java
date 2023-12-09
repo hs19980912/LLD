@@ -1,8 +1,8 @@
-public class Vechile{
+public class Vehicle{
     DriveStrategy strategy;
 
     // This is called constructor injection.
-    Vechile(DriveStrategy strategy){
+    Vehicle(DriveStrategy strategy){
         this.strategy = strategy;
     }
     public void drive(){
