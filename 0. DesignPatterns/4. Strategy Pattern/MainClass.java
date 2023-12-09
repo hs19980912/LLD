@@ -1,6 +1,6 @@
 public class MainClass {
     public static void main(String[] args){
-        Vechile s = new SportsCar();
+        Vehicle s = new SportsCar();
         s.drive();
     }
 }
