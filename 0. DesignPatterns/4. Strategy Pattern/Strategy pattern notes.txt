@@ -1,0 +1,78 @@
+1. Usage of Constructor injection:
+    In Vehicle.java class,
+    We have the usage of Constructor Injection.
+
+    public class Vehicle{
+        DriveStrategy strategy;
+
+        // This is called constructor injection.
+        Vehicle(DriveStrategy strategy){
+            this.strategy = strategy;
+        }
+        public void drive(){
+            strategy.drive();
+        }
+    }
+
+==============================================================================
+IMP: Coding prespective
+2. using this pattern without using new or delete keyword in C++:
+   In the client class / main function, no need to pass *specificStrategy,
+   rather, create Strategy specificStrategy1
+                  Strategy specificStrategy2
+                  Strategy specificStrategy3 ...
+                  ..
+                  use &specificStrategy to instantiate out Strategy interface in 
+                  the class where we have to use out modular strategy.
+    eg:
+        int main(){
+            level1 l1;
+            level2 l2;
+            level3 l3;
+            
+            Player p;
+IMPORTANT:  p.setStrategy(&l1);     // NO NEED TO declare strategy* level1 = new level1() etc;
+        }
+        
+        class Player{
+            Strategy* strategy;
+            Player(){
+                strategy = NULL;
+            }
+            void setStrategy(Strategy* selectedStrategy){
+                this->strategy = selectedStrategy;
+            }
+        };
+        
+        Strategy.cpp    // Strategy Interface, abstract class
+        level1.cpp      // Deriving from Strategy interface
+        level2.cpp
+        level3.cpp
+        
+        class Strategy{
+            virtual void functionality1() = 0;
+            virtual int functionality2() = 0;
+        };
+        
+        class level1: public Strategy{
+            void functionality1() override{
+                // implementation...
+            }
+            int functionality2() override{
+                // implementation
+            }
+        }
+==========================================================================
+
+3. Basically, virtual functions and function overriding are used to implement dynamic
+   behaviour decided at runtime. Multiple ways to start it:
+   
+   - Base* bptr = new DerivedClass();
+   
+   - DerivedClass obj;          // This method should be used to prevent the
+     Base* bptr = NULL;         // usage of new and delete keyword.
+     bptr = &obj;                
+     
+   - DerivedClass* dptr = new DerivedClass();
+     Base* bptr = dptr;
+
