@@ -1,0 +1,13 @@
+
+Difference Between Snake and Ladder and TicTacToe:
+In tictactoe, the Board used to get changed after every Player's turn
+But in Snake and Ladders, board remains fixed during the game,
+The position of the players gets changes, hence the position attribute 
+would be an attribute of the player and not of the board.
+
+similarity:
+in both tictactoe and snake and ladders, we use a deque of players,
+and analyze the startGame() always from the prespective of curplayer's turn
+ie: curPlayer = deque.fron();
+What are the possibility of curPlayer's actions;
+
