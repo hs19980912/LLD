@@ -1,6 +1,6 @@
 S - Single Responsibility Principle
 
-A class should have only 1 reason to change.
+"A class should have only 1 reason to change."
 
 Yes, that’s correct! In the SOLID principles of object-oriented design, this concept is referred to as the Single Responsibility Principle (SRP). According to the SRP, a class should have only one reason to change, meaning it should have only one responsibility or job.
 In practical terms, this means that a class should focus on a single part of the functionality provided by the software, and this part should be encapsulated within that class. If a class has more than one responsibility, changes in one area might affect or introduce bugs in another, making the code more difficult to maintain and understand.

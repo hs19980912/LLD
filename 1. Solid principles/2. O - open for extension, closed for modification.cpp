@@ -1,6 +1,7 @@
 The Open/Closed Principle (OCP) is one of the five SOLID principles of object-oriented design. It states that:
 
 "Software entities (classes, modules, functions, etc.) should be open for extension, but closed for modification."
+
 Explanation
 
     Open for Extension: The behavior of a module (e.g., class) can be extended. This means you can add new functionality or behaviors to the module.
