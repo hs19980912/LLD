@@ -8,76 +8,65 @@ By adhering to the Single Responsibility Principle, you make your code more modu
 
 =====================================================================================
 
-Example without SRP
+Violating SRP:
 
-    class Employee {
-    public:
-        Employee(const std::string& name, double hourlyRate)
-            : name(name), hourlyRate(hourlyRate) {}
+class Marker{
+    int colour;
+    string brand;
+};
 
-        double calculateSalary(int hoursWorked) const {
-            return hoursWorked * hourlyRate;
-        }
 
-        void generateReport(int hoursWorked) const {
-            double salary = calculateSalary(hoursWorked);
-            std::cout << "Employee Report\n";
-            std::cout << "Name: " << name << "\n";
-            std::cout << "Hours Worked: " << hoursWorked << "\n";
-            std::cout << "Salary: $" << salary << "\n";
-        }
+class Invoice{
+    Marker marker;
+    int quantity;
 
-    private:
-        std::string name;
-        double hourlyRate;
-    };
+    Invoice(Marker marker, int q) : marker(maker), quantity(q) {}
 
-    int main() {
-        Employee employee("Alice Johnson", 50.0);
-        employee.generateReport(40); // Generates a report for 40 hours of work
-        return 0;
+    void generateBill(){
+
     }
 
----------------------------------------------------------------------------------------
+    void printInvoice(){
 
-Example with SRP 
-
-    // Class responsible for managing employee data and calculating salary
-    class Employee {
-    public:
-        Employee(const std::string& name, double hourlyRate)
-            : name(name), hourlyRate(hourlyRate) {}
-
-        double calculateSalary(int hoursWorked) const {
-            return hoursWorked * hourlyRate;
-        }
-
-        std::string getName() const {
-            return name;
-        }
-
-    private:
-        std::string name;
-        double hourlyRate;
-    };
-
-    // Class responsible for generating reports for employees
-    class EmployeeReport {
-    public:
-        void generateReport(const Employee& employee, int hoursWorked) const {
-            double salary = employee.calculateSalary(hoursWorked);
-            std::cout << "Employee Report\n";
-            std::cout << "Name: " << employee.getName() << "\n";
-            std::cout << "Hours Worked: " << hoursWorked << "\n";
-            std::cout << "Salary: $" << salary << "\n";
-        }
-    };
-
-    int main() {
-        Employee employee("Alice Johnson", 50.0);
-
-        EmployeeReport report;
-        report.generateReport(employee, 40); // Generates a report for 40 hours of work
-
-        return 0;
     }
+
+    void savetoDB(){
+
+    }
+};
+
+=========================================================================================
+
+Adhering to single repsonsibility principle
+
+class Marker{
+    int colour;
+    string brand;
+};
+
+class InvoiceBill{
+    Marker marker;
+    InvoiceBill(Marker marker) : marker(marker){}
+
+    void generateBill(){
+
+    }
+};
+
+class InvoicePrint{
+    Marker marker;
+    InvoiceBill(Marker marker) : marker(marker){}
+
+    void printInvoice(){
+        
+    }
+};
+
+class InvoiceSaveDB{
+    Marker marker;
+    InvoiceBill(Marker marker) : marker(marker){}
+
+    void saveInvoicetoDB(){
+        
+    }
+};
