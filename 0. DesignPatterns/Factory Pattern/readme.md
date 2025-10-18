@@ -1,6 +1,14 @@
 # Factory pattern
 ---
 
+## 🧭 Summary Table (with Analogies)
+
+| Pattern              | Analogy            | Code Essence                             | Number of Factories      | Key Benefit                     |
+| -------------------- | ------------------ | ---------------------------------------- | ------------------------ | ------------------------------- |
+| **Static Factory**   | Vending Machine    | One static `getSnack()`                  | 1                        | Simple, centralized creation    |
+| **Factory Method**   | Different Bakeries | Virtual `createBread()`                  | One per product type     | Extensible via subclassing      |
+| **Abstract Factory** | Furniture Factory  | Virtual `createChair()` + `createSofa()` | One per product *family* | Creates related object families |
+
 ## 1️⃣ Static Factory Pattern — *“Vending Machine” Analogy*
 
 ### 🧠 Analogy:
@@ -241,13 +249,6 @@ int main() {
 
 ---
 
-## 🧭 Summary Table (with Analogies)
-
-| Pattern              | Analogy            | Code Essence                             | Number of Factories      | Key Benefit                     |
-| -------------------- | ------------------ | ---------------------------------------- | ------------------------ | ------------------------------- |
-| **Static Factory**   | Vending Machine    | One static `getSnack()`                  | 1                        | Simple, centralized creation    |
-| **Factory Method**   | Different Bakeries | Virtual `createBread()`                  | One per product type     | Extensible via subclassing      |
-| **Abstract Factory** | Furniture Factory  | Virtual `createChair()` + `createSofa()` | One per product *family* | Creates related object families |
 
 ---
 
