@@ -463,7 +463,8 @@ class AsyncFileLogger : public Logger {
     void run() {
         while (true) {
             std::unique_lock<std::mutex> lk(queue_mtx);
-            queue_cv.wait(lk, [this] { return stopping || !q.empty(); });
+            queue_cv.wait(lk, [this] { return stopping || !q.empty(); });  // The predicate is a condition that must be true before the thread continues. 
+
 
             // drain queue (batching)
             while (!q.empty()) {
