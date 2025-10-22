@@ -1,3 +1,62 @@
+This is your universal async execution skeleton.
+
+You can use it to build:
+- Async Logger
+- Async File Writer
+- Async Database Writer
+- Async Network Dispatcher
+- Async Metrics Collector
+- Async Email Sender
+- Async Retry Scheduler
+
+Just replace task() with your real “business logic”.
+
+```cpp
+class AsyncWorker {
+    std::queue<Task> queue;
+    std::mutex mtx;
+    std::condition_variable cv;
+    bool stop = false;
+    std::thread worker;
+
+    void eventLoop() {
+        while (true) {
+            std::unique_lock<std::mutex> lk(mtx);
+            cv.wait(lk, [this]{ return stop || !queue.empty(); });
+
+            if (stop && queue.empty()) break;
+
+            auto task = std::move(queue.front());
+            queue.pop();
+            lk.unlock();
+
+            task(); // execute user-provided callback
+        }
+    }
+
+public:
+    AsyncWorker() : worker(&AsyncWorker::eventLoop, this) {}
+
+    void post(Task t) {
+        std::lock_guard<std::mutex> lk(mtx);
+        queue.push(std::move(t));
+        cv.notify_one();
+    }
+
+    void shutdown() {
+        {
+            std::lock_guard<std::mutex> lk(mtx);
+            stop = true;
+        }
+        cv.notify_one();
+        worker.join();
+    }
+};
+
+```
+
+
+
 ## Event loop/Worker pattern in Async programming
 
 **We used a event loop in File logger design to make it Asynchronous. It means that this type of code paradigmn of using while(true) in the thread function should be very common in Async programming?**
