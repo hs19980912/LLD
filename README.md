@@ -1,7 +1,13 @@
 # LLD
-1. TicTacToe
-2. SnakeAndLadder
-3. Elevator System
-4. Elevator Design
-5. Food ordering system
-6. Undo and Redo in text editor
+- TicTacToe
+- SnakeAndLadder
+- Elevator System
+- Elevator Design
+- Food ordering system
+- Undo and Redo in text editor
+- Event Loop, Worker thread
+    + Async Disk Logging
+    + Thread pool
+    + Task Scheduler
+
+    
