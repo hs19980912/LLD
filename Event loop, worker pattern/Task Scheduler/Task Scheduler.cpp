@@ -67,11 +67,20 @@ private:
 
     // Core scheduling function
     void scheduleAt(Task task, std::chrono::steady_clock::time_point time) {
+        bool wakeAll = false;
         {
             std::unique_lock<std::mutex> lock(mtx);
+            // If the new task is earlier than the current top, we must wake everyone
+            if (taskQueue.empty() || time < taskQueue.top().time)
+                wakeAll = true;
+
             taskQueue.push({time, std::move(task)});
         }
-        cv.notify_one();
+
+        if (wakeAll)
+            cv.notify_all();
+        else
+            cv.notify_one();
     }
 
     // Each worker runs its own event loop
