@@ -8,8 +8,13 @@
 #include <atomic>
 
 /*
- * 🧩 Problem Context
- * 
+ 🧩 Problem Context
+ 
+Thread Pool / Executor Service:
+- Implement a fixed thread pool that executes submitted tasks concurrently.
+- Support graceful shutdown and task queueing.
+- Common extension: add task priorities, delays, or futures for results.
+
  * We want to:
  *   - Have multiple threads, each running its own event loop.
  *   - Distribute tasks among these event loops.
@@ -21,15 +26,6 @@
  *   - Waits for tasks in a queue.
  *   - When a task arrives, executes it.
  *   - Repeats indefinitely until stopped.
- * 
- * Think of it as:
- * 
- *   void eventLoop() {
- *       while (!stop) {
- *           Task task = getNextTask();  // Wait for a task
- *           task();                     // Run it
- *       }
- *   }
  * 
  * ✅ Step 2: Where Thread-Safety Issues Arise
  * 

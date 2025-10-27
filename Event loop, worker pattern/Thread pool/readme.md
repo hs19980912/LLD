@@ -1,5 +1,11 @@
 # Thread pool
 
+Thread Pool / Executor Service:
+- Implement a fixed thread pool that executes submitted tasks concurrently.
+- Support graceful shutdown and task queueing.
+- Common extension: add task priorities, delays, or futures for results.
+
+
 Perfect 👍 Let’s go step-by-step with a **concrete example** of how a **thread pool with multiple event loops** works — where **each thread runs its own event loop** to process tasks independently.
 
 ---
