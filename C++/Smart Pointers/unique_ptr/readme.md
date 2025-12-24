@@ -36,7 +36,7 @@
     - explicit → prevents raw-pointer-to-UniquePtr implicit conversion (but can still cause double delete)
     - Hence, best practice is not to use raw pointers itself and use make_unique.
 
-- **Note:** use `noexcept` in move ctor and = operator
+- **Note: use `noexcept` in move ctor and = operator**
     - They are guaranteed not to throw (pointer copy + nulling is safe).
     - Standard containers (like std::vector) depend on this guarantee to safely and efficiently move elements during reallocation.
     - Without noexcept, containers may fall back to copying (which is deleted for UniquePtr) → compilation errors or performance penalties.
