@@ -56,7 +56,7 @@
         - When you write: `UniquePtr(UniquePtr&&) noexcept;` you are making a strong promise:
             - ❗ If this function throws at runtime → the program will call std::terminate.
             - There is no stack unwinding, no catching, no recovery.
-            - STL does not check whether your function actually throws. It assumes noexcept == truth and does its working.
+            - STL does not check whether your function actually throws. It assumes `noexcept == truth` and does its working.
             - If we lie, STL code will silently become unsafe. noexcept is a strict contract.
         - So the best way(a more idiomatic C++ way) is to use `contional noexcept`. 
         - ``` cpp
